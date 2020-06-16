@@ -1,17 +1,17 @@
 <section class="cs-actions">
-  <p>Selecionados {{ selectedMovies.length }} de 8 filmes</p>
+  <p>Selecionados {{ selectedFilms.length }} de 8 filmes</p>
   <button mat-button color="primary" (click)="generateChampionship()">GERAR MEU CAMPEONATO</button>
 </section>
 
 <mat-grid-list [cols]="columns" [rowHeight]="rowHeight" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let movie of allMovies" [colspan]="1" [rowspan]="1">
+  <mat-grid-tile *ngFor="let film of allFilms" [colspan]="1" [rowspan]="1">
     <mat-card class="cs-card">
       <mat-card-content class="cs-card-content">
-        <mat-checkbox (change)="changeSelection($event.checked, movie)" [disabled]="isFullSelection(movie)"
+        <mat-checkbox (change)="changeSelection($event.checked, film)" [disabled]="isFullSelection(film)"
           class="multipleselect mat-card-header-text"></mat-checkbox>
         <div>
-          <h3>{{movie.titulo}}</h3>
-          <p>{{movie.ano}}</p>
+          <h3>{{film.titulo}}</h3>
+          <p>{{film.ano}}</p>
         </div>
       </mat-card-content>
     </mat-card>

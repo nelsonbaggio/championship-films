@@ -7,15 +7,15 @@ using championship_films_api.Models;
 
 namespace championship_films_api.Services
 {
-  public class MovieService : IMovieService
+  public class FilmService : IFilmService
   {
 
     private readonly IHttpClientFactory _clientFactory;
-    public MovieService(IHttpClientFactory clientFactory)
+    public FilmService(IHttpClientFactory clientFactory)
     {
       this._clientFactory = clientFactory;
     }
-    public async Task<List<Movie>> GetMoviesAsync()
+    public async Task<List<Film>> GetFilmsAsync()
     {
       var client = _clientFactory.CreateClient("copafilmes");
       var request = new HttpRequestMessage(HttpMethod.Get, "api/filmes");
@@ -23,39 +23,39 @@ namespace championship_films_api.Services
       if (response.IsSuccessStatusCode)
       {
         using var responseStream = await response.Content.ReadAsStreamAsync();
-        List<Movie> lists = await JsonSerializer.DeserializeAsync<List<Movie>>(responseStream);
+        List<Film> lists = await JsonSerializer.DeserializeAsync<List<Film>>(responseStream);
         return lists;
       }
-      return new List<Movie>();
+      return new List<Film>();
     }
 
-    public List<Movie> GenerateChampionship(List<Movie> movies)
+    public List<Film> GenerateChampionship(List<Film> films)
     {
 
-      if (movies.Count % 2 != 0)
+      if (films.Count % 2 != 0)
       {
-        throw new Exception("It is only possible to play with an even number of movies");
+        throw new Exception("It is only possible to play with an even number of films");
       }
 
-      if (movies.Count == 2)
+      if (films.Count == 2)
       {
-        var result = Play(movies[0], movies[1]);
-        return new List<Movie>
+        var result = Play(films[0], films[1]);
+        return new List<Film>
         {
           result.Item1,
           result.Item2
         };
       }
 
-      var round = new List<Movie>();
-      for (int i = 0; i < movies.Count / 2; i++)
+      var round = new List<Film>();
+      for (int i = 0; i < films.Count / 2; i++)
       {
-        round.Add(Play(movies[i], movies[movies.Count - 1 - i]).Item1);
+        round.Add(Play(films[i], films[films.Count - 1 - i]).Item1);
       }
       return GenerateChampionship(round);
     }
 
-    private Tuple<Movie, Movie> Play(Movie home, Movie visiting)
+    private Tuple<Film, Film> Play(Film home, Film visiting)
     {
       if (home.Rating > visiting.Rating)
       {

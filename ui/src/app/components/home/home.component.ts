@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from 'src/app/services/movie.service';
+import { FilmService } from 'src/app/services/film.service';
 import { Subscription } from 'rxjs';
-import { Movie } from 'src/app/models/movie';
+import { Film } from 'src/app/models/film';
 
 @Component({
   selector: 'home',
@@ -12,20 +12,28 @@ export class HomeComponent implements OnInit {
 
   private readonly breakpoint = 798;
   private readonly maxSelections = 8;
+  private readonly rowHeightSmallScreen = "6:1";
+  private readonly rowHeightLargeScreen = "2:1";
+  private readonly columnsSmallScreen = 1;
+  private readonly columnsLargeScreen = 4;
 
   subcription: Subscription = new Subscription();
-  allMovies: Array<Movie>;
-  selectedMovies: Array<Movie> = [];
+  allFilms: Array<Film>;
+  selectedFilms: Array<Film> = [];
   columns: number;
   rowHeight: string;
 
-  constructor(private movieService: MovieService) { }
+
+
+  constructor(private filmService: FilmService) { }
 
   ngOnInit(): void {
-    this.columns = (window.innerWidth <= this.breakpoint) ? 1 : 4;
-    this.rowHeight = (window.innerWidth <= this.breakpoint) ? "6:1" : "2:1";
-    this.subcription = this.movieService.getMovies().subscribe(movies => {
-      this.allMovies = movies;
+    this.columns = (window.innerWidth <= this.breakpoint) ?
+      this.columnsSmallScreen : this.columnsLargeScreen;
+    this.rowHeight = (window.innerWidth <= this.breakpoint) ?
+      this.rowHeightSmallScreen : this.rowHeightLargeScreen;
+    this.subcription = this.filmService.getFilms().subscribe(films => {
+      this.allFilms = films;
     });
   }
 
@@ -33,32 +41,34 @@ export class HomeComponent implements OnInit {
     this.subcription.unsubscribe();
   }
 
-  changeSelection = (choice: boolean, movie: Movie): void => {
-    choice ? this.selectMovie(movie) : this.deselectMovie(movie.id);
+  changeSelection = (choice: boolean, film: Film): void => {
+    choice ? this.selectFilm(film) : this.deselectFilm(film.id);
   }
 
-  isFullSelection = (movie: Movie): boolean => {
-    const isNotSelected = this.selectedMovies.every(item => item.id !== movie.id);
-    return isNotSelected && this.selectedMovies.length === this.maxSelections;
+  isFullSelection = (film: Film): boolean => {
+    const isNotSelected = this.selectedFilms.every(item => item.id !== film.id);
+    return isNotSelected && this.selectedFilms.length === this.maxSelections;
   }
 
   onResize = (event: any): void => {
-    this.columns = (event.target.innerWidth <= this.breakpoint) ? 1 : 4;
-    this.rowHeight = (event.target.innerWidth <= this.breakpoint) ? "6:1" : "2:1";
+    this.columns = (event.target.innerWidth <= this.breakpoint) ?
+      this.columnsSmallScreen : this.columnsLargeScreen;
+    this.rowHeight = (event.target.innerWidth <= this.breakpoint) ?
+      this.rowHeightSmallScreen : this.rowHeightLargeScreen;
   }
 
   generateChampionship = (): void => {
-    this.movieService.generateChampionship(this.selectedMovies);
+    this.filmService.generateChampionship(this.selectedFilms);
   }
 
-  private selectMovie = (movie: Movie): void => {
-    this.selectedMovies.push(movie);
+  private selectFilm = (film: Film): void => {
+    this.selectedFilms.push(film);
   }
 
-  private deselectMovie = (id: string): void => {
-    this.selectedMovies = this.selectedMovies
-      .map(movie => movie.id !== id ? movie : null)
-      .filter(movie => !!movie);
+  private deselectFilm = (id: string): void => {
+    this.selectedFilms = this.selectedFilms
+      .map(film => film.id !== id ? film : null)
+      .filter(film => !!film);
   }
 
 }

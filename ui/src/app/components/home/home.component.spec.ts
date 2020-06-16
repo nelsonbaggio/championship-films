@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { MovieService } from 'src/app/services/movie.service';
+import { FilmService } from 'src/app/services/film.service';
 import { of } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -10,13 +10,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 describe('HomeComponent ->', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  const oneMovie = { id: '1', titulo: '300', ano: 2007, nota: 10.0 };
+  const oneFilm = { id: '1', titulo: '300', ano: 2007, nota: 10.0 };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [{
-        provide: MovieService, useValue: {
-          getMovies: () => of([oneMovie])
+        provide: FilmService, useValue: {
+          getFilms: () => of([oneFilm])
         }
       }],
       imports: [
@@ -40,10 +40,10 @@ describe('HomeComponent ->', () => {
   });
 
   describe('Function ngOnInit ->', () => {
-    it('should call getMovies from MovieService and set allMovies with the result', () => {
+    it('should call getFilms from FilmService and set allFilms with the result', () => {
       component.ngOnInit();
-      expect(component.allMovies.length).toBe(1);
-      expect(component.allMovies).toContain(oneMovie);
+      expect(component.allFilms.length).toBe(1);
+      expect(component.allFilms).toContain(oneFilm);
     });
 
     // it('should set columns to 1 when window.innerWidth less than 798', () => {
@@ -54,18 +54,18 @@ describe('HomeComponent ->', () => {
 
 
   describe('Function changeSelection ->', () => {
-    it('should add selected movie when call changeSelection whith choice true', () => {
-      component.changeSelection(true, oneMovie)
-      expect(component.selectedMovies.length).toBe(1);
-      expect(component.selectedMovies[0]).toBe(oneMovie);
+    it('should add selected film when call changeSelection whith choice true', () => {
+      component.changeSelection(true, oneFilm)
+      expect(component.selectedFilms.length).toBe(1);
+      expect(component.selectedFilms[0]).toBe(oneFilm);
     });
 
-    it('should remove selected movie when call changeSelection whith choice false', () => {
+    it('should remove selected film when call changeSelection whith choice false', () => {
       const anotherOne = { id: '2', titulo: 'Up', ano: 2007, nota: 10.0 };
-      component.selectedMovies = [oneMovie, anotherOne]
-      component.changeSelection(false, oneMovie);
-      expect(component.selectedMovies.length).toBe(1);
-      expect(component.selectedMovies[0]).toBe(anotherOne);
+      component.selectedFilms = [oneFilm, anotherOne]
+      component.changeSelection(false, oneFilm);
+      expect(component.selectedFilms.length).toBe(1);
+      expect(component.selectedFilms[0]).toBe(anotherOne);
     });
   })
 
@@ -99,51 +99,51 @@ describe('HomeComponent ->', () => {
   describe('Function isFullSelection ->', () => {
 
     const selectedMock = [
-      { id: '1', titulo: 'Movie 1', ano: 2007, nota: 10.0 },
-      { id: '2', titulo: 'Movie 2', ano: 2007, nota: 10.0 },
-      { id: '3', titulo: 'Movie 3', ano: 2007, nota: 10.0 },
-      { id: '4', titulo: 'Movie 4', ano: 2007, nota: 10.0 },
-      { id: '5', titulo: 'Movie 5', ano: 2007, nota: 10.0 },
-      { id: '6', titulo: 'Movie 6', ano: 2007, nota: 10.0 },
-      { id: '7', titulo: 'Movie 7', ano: 2007, nota: 10.0 },
-      { id: '8', titulo: 'Movie 8', ano: 2007, nota: 10.0 }
+      { id: '1', titulo: 'Film 1', ano: 2007, nota: 10.0 },
+      { id: '2', titulo: 'Film 2', ano: 2007, nota: 10.0 },
+      { id: '3', titulo: 'Film 3', ano: 2007, nota: 10.0 },
+      { id: '4', titulo: 'Film 4', ano: 2007, nota: 10.0 },
+      { id: '5', titulo: 'Film 5', ano: 2007, nota: 10.0 },
+      { id: '6', titulo: 'Film 6', ano: 2007, nota: 10.0 },
+      { id: '7', titulo: 'Film 7', ano: 2007, nota: 10.0 },
+      { id: '8', titulo: 'Film 8', ano: 2007, nota: 10.0 }
     ];
 
-    it('should true when unselected movie and max selection', () => {
-      component.selectedMovies = selectedMock;
+    it('should true when unselected film and max selection', () => {
+      component.selectedFilms = selectedMock;
       expect(component.isFullSelection({
         id: '9',
-        titulo: 'Movie 8',
+        titulo: 'Film 8',
         ano: 2007,
         nota: 10.0
       })).toBeTrue();
     });
 
-    it('should false selected movie and max selection', () => {
-      component.selectedMovies = selectedMock;
+    it('should false selected film and max selection', () => {
+      component.selectedFilms = selectedMock;
       expect(component.isFullSelection({
         id: '1',
-        titulo: 'Movie 1',
+        titulo: 'Film 1',
         ano: 2007,
         nota: 10.0
       })).toBeFalse();
     });
 
-    it('should false when unselected movie and less max selection', () => {
-      component.selectedMovies = [];
+    it('should false when unselected film and less max selection', () => {
+      component.selectedFilms = [];
       expect(component.isFullSelection({
         id: '9',
-        titulo: 'Movie 8',
+        titulo: 'Film 8',
         ano: 2007,
         nota: 10.0
       })).toBeFalse();
     });
 
-    it('should false when selected movie and less max selection', () => {
-      component.selectedMovies = [];
+    it('should false when selected film and less max selection', () => {
+      component.selectedFilms = [];
       expect(component.isFullSelection({
         id: '1',
-        titulo: 'Movie 1',
+        titulo: 'Film 1',
         ano: 2007,
         nota: 10.0
       })).toBeFalse();

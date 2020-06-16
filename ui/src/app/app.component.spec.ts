@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { MovieService } from './services/movie.service';
+import { FilmService } from './services/film.service';
 import { of } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
@@ -24,8 +24,8 @@ describe('AppComponent ->', () => {
         HomeComponent
       ],
       providers: [{
-        provide: MovieService, useValue: {
-          getMovies: () => of([])
+        provide: FilmService, useValue: {
+          getFilms: () => of([])
         }
       }]
     }).compileComponents();

@@ -40,7 +40,7 @@ namespace championship_films_api
       {
         c.BaseAddress = new Uri("http://copafilmes.azurewebsites.net/");
       });
-      services.AddSingleton<IMovieService, MovieService>();
+      services.AddSingleton<IFilmService, FilmService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

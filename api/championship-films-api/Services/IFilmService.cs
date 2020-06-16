@@ -4,9 +4,9 @@ using championship_films_api.Models;
 
 namespace championship_films_api.Services
 {
-  public interface IMovieService
+  public interface IFilmService
   {
-    Task<List<Movie>> GetMoviesAsync();
-    List<Movie> GenerateChampionship(List<Movie> movies);
+    Task<List<Film>> GetFilmsAsync();
+    List<Film> GenerateChampionship(List<Film> films);
   }
 }

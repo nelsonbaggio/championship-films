@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace championship_films_api.Models
 {
 
-  public class Movie
+  public class Film
   {
 
     [JsonPropertyName("id")]

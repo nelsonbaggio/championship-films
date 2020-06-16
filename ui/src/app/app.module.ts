@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MovieService } from './services/movie.service';
+import { FilmService } from './services/film.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 
@@ -36,7 +36,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
   ],
   providers: [
-    MovieService,
+    FilmService,
     {
       provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true
     }
