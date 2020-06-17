@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using championship_films_api.Models;
 using championship_films_api.Services;
@@ -8,6 +9,7 @@ namespace championship_films_api.Controllers
 {
   [Route("api/films")]
   [ApiController]
+  [ExcludeFromCodeCoverage]
   public class FilmsController
   {
     private readonly IFilmService _service;
@@ -22,7 +24,7 @@ namespace championship_films_api.Controllers
     [HttpPost]
     public List<Film> GenerateChampionship([FromBody] List<Film> films)
     {
-      return this._service.GenerateChampionship(films);
+      return this._service.HandleFilms(films);
     }
   }
 }

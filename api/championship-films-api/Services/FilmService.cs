@@ -15,6 +15,7 @@ namespace championship_films_api.Services
     {
       this._clientFactory = clientFactory;
     }
+
     public async Task<List<Film>> GetFilmsAsync()
     {
       var client = _clientFactory.CreateClient("copafilmes");
@@ -29,13 +30,15 @@ namespace championship_films_api.Services
       return new List<Film>();
     }
 
-    public List<Film> GenerateChampionship(List<Film> films)
+    public List<Film> HandleFilms(List<Film> films)
     {
+      films.Sort((a, b) => a.Title.CompareTo(b.Title));
+      return GenerateChampionship(films);
+    }
 
-      if (films.Count % 2 != 0)
-      {
-        throw new Exception("It is only possible to play with an even number of films");
-      }
+    private List<Film> GenerateChampionship(List<Film> films)
+    {
+      Validate(films);
 
       if (films.Count == 2)
       {
@@ -55,6 +58,14 @@ namespace championship_films_api.Services
       return GenerateChampionship(round);
     }
 
+    private void Validate(List<Film> films)
+    {
+      if (films.Count % 2 != 0)
+      {
+        throw new InvalidOperationException("It is only possible to play with an even number of films");
+      }
+    }
+
     private Tuple<Film, Film> Play(Film home, Film visiting)
     {
       if (home.Rating > visiting.Rating)
@@ -64,14 +75,6 @@ namespace championship_films_api.Services
       else if (home.Rating < visiting.Rating)
       {
         return Tuple.Create(visiting, home);
-      }
-      else if (String.Compare(home.Title, visiting.Title) < 0)
-      {
-        return Tuple.Create(home, visiting);
-      }
-      else if (String.Compare(home.Title, visiting.Title) > 0)
-      {
-        return Tuple.Create(visiting, home); ;
       }
       return Tuple.Create(home, visiting);
     }

@@ -1,0 +1,445 @@
+{
+  "championship-films-api.dll": {
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Program.cs": {
+      "championship_films_api.Program": {
+        "System.Void championship_films_api.Program::Main(System.String[])": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.Hosting.IHostBuilder championship_films_api.Program::CreateHostBuilder(System.String[])": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Startup.cs": {
+      "championship_films_api.Startup": {
+        "Microsoft.Extensions.Configuration.IConfiguration championship_films_api.Startup::get_Configuration()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Void championship_films_api.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0
+          },
+          "Branches": []
+        },
+        "System.Void championship_films_api.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)": {
+          "Lines": {
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "53": 0,
+            "55": 0,
+            "57": 0,
+            "59": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0
+          },
+          "Branches": [
+            {
+              "Line": 48,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 9,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void championship_films_api.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "26": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/WeatherForecast.cs": {
+      "championship_films_api.WeatherForecast": {
+        "System.DateTime championship_films_api.WeatherForecast::get_Date()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 championship_films_api.WeatherForecast::get_TemperatureC()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 championship_films_api.WeatherForecast::get_TemperatureF()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String championship_films_api.WeatherForecast::get_Summary()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Services/FilmService.cs": {
+      "championship_films_api.Services.FilmService": {
+        "System.Collections.Generic.List`1<championship_films_api.Models.Film> championship_films_api.Services.FilmService::GenerateChampionship(System.Collections.Generic.List`1<championship_films_api.Models.Film>)": {
+          "Lines": {
+            "34": 1,
+            "36": 1,
+            "37": 0,
+            "38": 0,
+            "41": 1,
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 1
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 14,
+              "EndOffset": 28,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 39,
+              "EndOffset": 41,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 39,
+              "EndOffset": 98,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 176,
+              "EndOffset": 109,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 176,
+              "EndOffset": 178,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Tuple`2<championship_films_api.Models.Film,championship_films_api.Models.Film> championship_films_api.Services.FilmService::Play(championship_films_api.Models.Film,championship_films_api.Models.Film)": {
+          "Lines": {
+            "60": 1,
+            "61": 1,
+            "62": 0,
+            "63": 0,
+            "65": 1,
+            "66": 0,
+            "67": 0,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "77": 0,
+            "78": 1
+          },
+          "Branches": [
+            {
+              "Line": 61,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 61,
+              "Offset": 17,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 65,
+              "Offset": 46,
+              "EndOffset": 48,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 46,
+              "EndOffset": 59,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 69,
+              "Offset": 81,
+              "EndOffset": 83,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 69,
+              "Offset": 81,
+              "EndOffset": 94,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 73,
+              "Offset": 118,
+              "EndOffset": 120,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 73,
+              "Offset": 118,
+              "EndOffset": 131,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void championship_films_api.Services.FilmService::.ctor(System.Net.Http.IHttpClientFactory)": {
+          "Lines": {
+            "14": 1,
+            "15": 1,
+            "16": 1,
+            "17": 1
+          },
+          "Branches": []
+        }
+      },
+      "championship_films_api.Services.FilmService/<GetFilmsAsync>d__2": {
+        "System.Void championship_films_api.Services.FilmService/<GetFilmsAsync>d__2::MoveNext()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 237,
+              "EndOffset": 242,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 425,
+              "EndOffset": 427,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 425,
+              "EndOffset": 496,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 237,
+              "EndOffset": 562,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Models/Film.cs": {
+      "championship_films_api.Models.Film": {
+        "System.String championship_films_api.Models.Film::get_Id()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String championship_films_api.Models.Film::get_Title()": {
+          "Lines": {
+            "13": 10
+          },
+          "Branches": []
+        },
+        "System.Int32 championship_films_api.Models.Film::get_Year()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Single championship_films_api.Models.Film::get_Rating()": {
+          "Lines": {
+            "19": 12
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Controllers/FilmsController.cs": {
+      "championship_films_api.Controllers.FilmsController": {
+        "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<championship_films_api.Models.Film>> championship_films_api.Controllers.FilmsController::GetFilms()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<championship_films_api.Models.Film> championship_films_api.Controllers.FilmsController::GenerateChampionship(System.Collections.Generic.List`1<championship_films_api.Models.Film>)": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Void championship_films_api.Controllers.FilmsController::.ctor(championship_films_api.Services.IFilmService)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/Controllers/WeatherForecastController.cs": {
+      "championship_films_api.Controllers.WeatherForecastController": {
+        "System.Collections.Generic.IEnumerable`1<championship_films_api.WeatherForecast> championship_films_api.Controllers.WeatherForecastController::Get()": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.Void championship_films_api.Controllers.WeatherForecastController::.ctor(Microsoft.Extensions.Logging.ILogger`1<championship_films_api.Controllers.WeatherForecastController>)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Void championship_films_api.Controllers.WeatherForecastController::.cctor()": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

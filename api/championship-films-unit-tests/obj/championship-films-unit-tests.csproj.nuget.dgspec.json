@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/baggio/code/personal/championship-films/championship-films-unit-tests/championship-films-unit-tests.csproj": {}
+    "/home/baggio/code/personal/championship-films/api/championship-films-unit-tests/championship-films-unit-tests.csproj": {}
   },
   "projects": {
-    "/home/baggio/code/personal/championship-films/championship-films-unit-tests/championship-films-unit-tests.csproj": {
+    "/home/baggio/code/personal/championship-films/api/championship-films-api/championship-films-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/baggio/code/personal/championship-films/championship-films-unit-tests/championship-films-unit-tests.csproj",
-        "projectName": "championship-films-unit-tests",
-        "projectPath": "/home/baggio/code/personal/championship-films/championship-films-unit-tests/championship-films-unit-tests.csproj",
+        "projectUniqueName": "/home/baggio/code/personal/championship-films/api/championship-films-api/championship-films-api.csproj",
+        "projectName": "championship-films-api",
+        "projectPath": "/home/baggio/code/personal/championship-films/api/championship-films-api/championship-films-api.csproj",
         "packagesPath": "/home/baggio/.nuget/packages/",
-        "outputPath": "/home/baggio/code/personal/championship-films/championship-films-unit-tests/obj/",
+        "outputPath": "/home/baggio/code/personal/championship-films/api/championship-films-api/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -38,14 +38,84 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/baggio/code/personal/championship-films/api/championship-films-unit-tests/championship-films-unit-tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/baggio/code/personal/championship-films/api/championship-films-unit-tests/championship-films-unit-tests.csproj",
+        "projectName": "championship-films-unit-tests",
+        "projectPath": "/home/baggio/code/personal/championship-films/api/championship-films-unit-tests/championship-films-unit-tests.csproj",
+        "packagesPath": "/home/baggio/.nuget/packages/",
+        "outputPath": "/home/baggio/code/personal/championship-films/api/championship-films-unit-tests/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/baggio/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/home/baggio/code/personal/championship-films/api/championship-films-api/championship-films-api.csproj": {
+                "projectPath": "/home/baggio/code/personal/championship-films/api/championship-films-api/championship-films-api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
             },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[1.2.0, )"
+            },
+            "coverlet.msbuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.9.0, )"
             },
             "xunit": {
               "target": "Package",

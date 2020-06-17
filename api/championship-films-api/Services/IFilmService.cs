@@ -7,6 +7,6 @@ namespace championship_films_api.Services
   public interface IFilmService
   {
     Task<List<Film>> GetFilmsAsync();
-    List<Film> GenerateChampionship(List<Film> films);
+    List<Film> HandleFilms(List<Film> films);
   }
 }
