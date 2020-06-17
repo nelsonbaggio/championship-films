@@ -20,8 +20,6 @@
 							"const response = pm.response.json();",
 							"postman.setEnvironmentVariable(\"championship\", pm.response.json());",
 							"",
-							"console.log(response);",
-							"",
 							"pm.test(\"Os Incríveis 2\",  () => {",
 							"    pm.expect(response).to.deep.include.members([{",
 							"        \"id\": \"tt3606756\",",
