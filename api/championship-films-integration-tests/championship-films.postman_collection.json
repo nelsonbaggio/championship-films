@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "846d0525-8cc4-4a8e-a433-dcd192b2146a",
+		"name": "championship-films",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "films",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d8f8069-e10d-4635-ae28-b9568dac1847",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json();",
+							"postman.setEnvironmentVariable(\"championship\", pm.response.json());",
+							"",
+							"console.log(response);",
+							"",
+							"pm.test(\"Os Incríveis 2\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt3606756\",",
+							"        \"titulo\": \"Os Incríveis 2\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.5",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Jurassic World: Reino Ameaçado\",  () => {",
+							"    pm.expect(response).to.deep.include.members([    {",
+							"        \"id\": \"tt4881806\",",
+							"        \"titulo\": \"Jurassic World: Reino Ameaçado\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 6.7",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Oito Mulheres e um Segredo\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt5164214\",",
+							"        \"titulo\": \"Oito Mulheres e um Segredo\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 6.3",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Hereditário\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt7784604\",",
+							"        \"titulo\": \"Hereditário\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 7.8",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Vingadores: Guerra Infinita\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt4154756\",",
+							"        \"titulo\": \"Vingadores: Guerra Infinita\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.8",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Deadpool 2\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt5463162\",",
+							"        \"titulo\": \"Deadpool 2\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.1",
+							"    }])",
+							"});",
+							"",
+							"pm.test(\"Thor: Ragnarok\",  () => {",
+							"",
+							"pm.test(\"Han Solo: Uma História Star Wars\",  () => {",
+							"    pm.expect(response).to.deep.include.members([{",
+							"       \"id\": \"tt3778644\",",
+							"        \"titulo\": \"Han Solo: Uma História Star Wars\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 7.2",
+							"    }])",
+							"});",
+							"",
+							"pm.expect(response).to.deep.include.members([{",
+							"        \"id\": \"tt3501632\",",
+							"        \"titulo\": \"Thor: Ragnarok\",",
+							"        \"ano\": 2017,",
+							"        \"nota\": 7.9",
+							"    }])",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/films",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"films"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "championship-result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "862afef4-cf24-4e7c-a7e5-7d657563b000",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json();",
+							"postman.setEnvironmentVariable(\"championship-id\", response.id);",
+							"",
+							"pm.test(\"First Place is Vingadores: Guerra Infinita\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstPlace).to.deep.equal({",
+							"        \"id\": \"tt4154756\",",
+							"        \"titulo\": \"Vingadores: Guerra Infinita\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.8",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Second Place is Os Incríveis 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.secondPlace).to.deep.equal({",
+							"        \"id\": \"tt3606756\",",
+							"        \"titulo\": \"Os Incríveis 2\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.5",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n        \"id\": \"tt3606756\",\n        \"titulo\": \"Os Incríveis 2\",\n        \"ano\": 2018,\n        \"nota\": 8.5\n    },\n    {\n        \"id\": \"tt4881806\",\n        \"titulo\": \"Jurassic World: Reino Ameaçado\",\n        \"ano\": 2018,\n        \"nota\": 6.7\n    },\n    {\n        \"id\": \"tt5164214\",\n        \"titulo\": \"Oito Mulheres e um Segredo\",\n        \"ano\": 2018,\n        \"nota\": 6.3\n    },\n    {\n        \"id\": \"tt7784604\",\n        \"titulo\": \"Hereditário\",\n        \"ano\": 2018,\n        \"nota\": 7.8\n    },\n    {\n        \"id\": \"tt4154756\",\n        \"titulo\": \"Vingadores: Guerra Infinita\",\n        \"ano\": 2018,\n        \"nota\": 8.8\n    },\n    {\n        \"id\": \"tt5463162\",\n        \"titulo\": \"Deadpool 2\",\n        \"ano\": 2018,\n        \"nota\": 8.1\n    },\n    {\n        \"id\": \"tt3778644\",\n        \"titulo\": \"Han Solo: Uma História Star Wars\",\n        \"ano\": 2018,\n        \"nota\": 7.2\n    },\n    {\n        \"id\": \"tt3501632\",\n        \"titulo\": \"Thor: Ragnarok\",\n        \"ano\": 2017,\n        \"nota\": 7.9\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/championship-result",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"championship-result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "championship-result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce3e81bc-5cf5-4127-a866-7aad58b67fe8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"First Place is Vingadores: Guerra Infinita\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstPlace).to.deep.equal({",
+							"        \"id\": \"tt4154756\",",
+							"        \"titulo\": \"Vingadores: Guerra Infinita\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.8",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Second Place is Os Incríveis 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.secondPlace).to.deep.equal({",
+							"        \"id\": \"tt3606756\",",
+							"        \"titulo\": \"Os Incríveis 2\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.5",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/championship-result/{{championship-id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"championship-result",
+						"{{championship-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "championship-result without id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c448bca-62ca-4538-a121-e0b67b59d373",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"First Place is Vingadores: Guerra Infinita\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstPlace).to.deep.equal({",
+							"        \"id\": \"tt4154756\",",
+							"        \"titulo\": \"Vingadores: Guerra Infinita\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.8",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Second Place is Os Incríveis 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.secondPlace).to.deep.equal({",
+							"        \"id\": \"tt3606756\",",
+							"        \"titulo\": \"Os Incríveis 2\",",
+							"        \"ano\": 2018,",
+							"        \"nota\": 8.5",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/championship-result/{{championship-id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"championship-result",
+						"{{championship-id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

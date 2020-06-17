@@ -32,7 +32,7 @@ namespace championship_films_api.Services
         return collection.Find(doc => doc.Id.Equals(id)).FirstOrDefault();
       }
 
-      ChampionshipFilmsResult championshipFilmsResult = collection.Find(doc => true).Sort("{ createAt: 1}").Limit(1).Single();
+      ChampionshipFilmsResult championshipFilmsResult = collection.Find(doc => true).Sort("{ createAt: -1}").Limit(1).Single();
       return championshipFilmsResult;
     }
 

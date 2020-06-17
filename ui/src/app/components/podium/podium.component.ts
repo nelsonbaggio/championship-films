@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChampionshipService } from 'src/app/services/championship.service';
 import { ChampionshipResult } from 'src/app/models/championship-result';
-import { mergeMap, switchMap } from 'rxjs/operators/';
+import { switchMap } from 'rxjs/operators/';
 
 @Component({
   selector: 'app-podium',
@@ -16,20 +16,9 @@ export class PodiumComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: ChampionshipService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        return this.service.getResult(params.get('id'));
-      })
-    ).subscribe(result => {
-      this.result = result;
-    });
-
-    // this.route.queryParams
-    //   .pipe(mergeMap(params => {
-    //     return this.service.getResult(params['id'])
-    //   }))
-    //   .subscribe(result => {
-    //     this.result = result;
-    //   });
+    this.service.getResult(this.route.snapshot.paramMap.get('id'))
+      .subscribe(result => {
+        this.result = result;
+      });
   }
 }

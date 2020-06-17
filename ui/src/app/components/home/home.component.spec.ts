@@ -6,18 +6,32 @@ import { of } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ChampionshipService } from 'src/app/services/championship.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('HomeComponent ->', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   const oneFilm = { id: '1', titulo: '300', ano: 2007, nota: 10.0 };
-
+  const filmService = jasmine.createSpyObj('filmService', {
+    'getFilms': of([oneFilm])
+  });
+  const championshipService = jasmine.createSpyObj('championshipService', {
+    'generateChampionship': of({ id: '1' }),
+  });
+  const router = jasmine.createSpyObj('Router', ['navigate']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [{
-        provide: FilmService, useValue: {
-          getFilms: () => of([oneFilm])
-        }
+        provide: Router,
+        useValue: router
+      }, {
+        provide: FilmService,
+        useValue: filmService
+      },
+      {
+        provide: ChampionshipService,
+        useValue: championshipService
       }],
       imports: [
         MatCardModule,
@@ -45,11 +59,6 @@ describe('HomeComponent ->', () => {
       expect(component.allFilms.length).toBe(1);
       expect(component.allFilms).toContain(oneFilm);
     });
-
-    // it('should set columns to 1 when window.innerWidth less than 798', () => {
-    //   component.ngOnInit();
-    //   expect(component.columns).toBe(1);
-    // });
   })
 
 
@@ -92,6 +101,15 @@ describe('HomeComponent ->', () => {
     it('should set to 2:1 when onResize is called with innerWidth bigger then 798 on event', () => {
       component.onResize({ target: { innerWidth: 799 } });
       expect(component.rowHeight).toBe('2:1');
+    });
+  })
+
+  describe('Function generateChampionship ->', () => {
+    it('should call service and Router navigate', () => {
+      expect(championshipService.generateChampionship)
+        .toHaveBeenCalledWith((component.selectedFilms));
+      component.generateChampionship();
+      expect(router.navigate).toHaveBeenCalledWith(['/podium', { id: '1' }]);
     });
   })
 
