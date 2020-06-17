@@ -11,9 +11,13 @@ namespace championship_films_api.Services
   {
 
     private readonly IHttpClientFactory _clientFactory;
-    public FilmService(IHttpClientFactory clientFactory)
+    private readonly IChampionshipFilmsResultService _resultService;
+
+    public FilmService(IHttpClientFactory clientFactory,
+      IChampionshipFilmsResultService resultService)
     {
-      this._clientFactory = clientFactory;
+      _clientFactory = clientFactory;
+      _resultService = resultService;
     }
 
     public async Task<List<Film>> GetFilmsAsync()
@@ -30,10 +34,18 @@ namespace championship_films_api.Services
       return new List<Film>();
     }
 
-    public List<Film> HandleFilms(List<Film> films)
+    public async Task<ChampionshipFilmsResult> HandleFilmsAsync(List<Film> films)
     {
       films.Sort((a, b) => a.Title.CompareTo(b.Title));
-      return GenerateChampionship(films);
+      var final = GenerateChampionship(films);
+      ChampionshipFilmsResult result = new ChampionshipFilmsResult
+      {
+        Id = Guid.NewGuid().ToString(),
+        FirstPlace = final[0],
+        SecondPlace = final[1],
+      };
+      await _resultService.Create(result);
+      return result;
     }
 
     private List<Film> GenerateChampionship(List<Film> films)
@@ -78,5 +90,6 @@ namespace championship_films_api.Services
       }
       return Tuple.Create(home, visiting);
     }
+
   }
 }

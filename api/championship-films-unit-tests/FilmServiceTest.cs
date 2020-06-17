@@ -4,40 +4,47 @@ using System;
 using championship_films_api.Services;
 using System.Collections.Generic;
 using championship_films_api.Models;
+using System.Threading.Tasks;
+using NSubstitute;
+using Moq;
 
 namespace championship_films_unit_tests
 {
   public class FilmsServiceTest
   {
-    private readonly FilmService _service;
+    private readonly Mock<IChampionshipFilmsResultService> resultServiceMock;
+    private readonly FilmService target;
 
     public FilmsServiceTest()
     {
-      _service = new FilmService(null);
+      resultServiceMock = new Mock<IChampionshipFilmsResultService>();
+      resultServiceMock.Setup(x => x.Create(It.IsAny<ChampionshipFilmsResult>()))
+                       .ReturnsAsync((ChampionshipFilmsResult)null);
+      target = new FilmService(null, resultServiceMock.Object);
     }
 
     [Fact]
-    public void ShouldDeterminateAChampionByChangeAlphabeticOrder()
+    public async Task ShouldDeterminateAChampionByChangeAlphabeticOrderAsync()
     {
       var deadPool = new Film { Id = "tt5463162", Title = "Deadpool", Year = 2018, Rating = 8.1f };
       var deadPool2 = new Film { Id = "tt5463162", Title = "Deadpool 2", Year = 2018, Rating = 8.1f };
-      var result = _service.HandleFilms(new List<Film> { deadPool2, deadPool });
-      Assert.Equal(deadPool, result[0]);
-      Assert.Equal(deadPool2, result[1]);
+      var result = await target.HandleFilmsAsync(new List<Film> { deadPool2, deadPool });
+      Assert.Equal(deadPool, result.FirstPlace);
+      Assert.Equal(deadPool2, result.SecondPlace);
     }
 
     [Fact]
-    public void ShouldDeterminateAChampionByKeepAlphabeticOrder()
+    public async Task ShouldDeterminateAChampionByKeepAlphabeticOrderAsync()
     {
       var deadPool = new Film { Id = "tt5463162", Title = "Deadpool", Year = 2018, Rating = 8.1f };
       var deadPool2 = new Film { Id = "tt5463162", Title = "Deadpool 2", Year = 2018, Rating = 8.1f };
-      var result = _service.HandleFilms(new List<Film> { deadPool, deadPool2 });
-      Assert.Equal(deadPool, result[0]);
-      Assert.Equal(deadPool2, result[1]);
+      var result = await target.HandleFilmsAsync(new List<Film> { deadPool, deadPool2 });
+      Assert.Equal(deadPool, result.FirstPlace);
+      Assert.Equal(deadPool2, result.SecondPlace);
     }
 
     [Fact]
-    public void ShouldDeterminateAChampionInAHappyPath()
+    public async Task ShouldDeterminateAChampionInAHappyPathAsync()
     {
 
       var secondPlace = new Film { Id = "tt3606756", Title = "Os Incríveis 2", Year = 2018, Rating = 8.5f };
@@ -54,17 +61,17 @@ namespace championship_films_unit_tests
         new Film { Id = "tt3501632", Title = "Thor: Ragnarok", Year = 2017, Rating = 7.9f },
       };
 
-      var result = _service.HandleFilms(_films);
-      Assert.Equal(firstPlace, result[0]);
-      Assert.Equal(secondPlace, result[1]);
+      var result = await target.HandleFilmsAsync(_films);
+      Assert.Equal(firstPlace, result.FirstPlace);
+      Assert.Equal(secondPlace, result.SecondPlace);
     }
 
     [Fact]
     public void ShouldReturnErrorWhenNumberOfFilmsIsNotEven()
     {
-      Assert.Throws<InvalidOperationException>(() =>
+      Assert.ThrowsAsync<InvalidOperationException>(async () =>
       {
-        _service.HandleFilms(new List<Film> {
+        await target.HandleFilmsAsync(new List<Film> {
           new Film {
             Id = "tt7784604",
             Title = "Hereditário",

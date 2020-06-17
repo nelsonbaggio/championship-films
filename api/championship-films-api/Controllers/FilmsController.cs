@@ -12,19 +12,14 @@ namespace championship_films_api.Controllers
   [ExcludeFromCodeCoverage]
   public class FilmsController
   {
-    private readonly IFilmService _service;
+    private readonly IFilmService _filmService;
 
-    public FilmsController(IFilmService service)
+    public FilmsController(IFilmService filmService)
     {
-      this._service = service;
+      _filmService = filmService;
     }
     [HttpGet]
-    public Task<List<Film>> GetFilms() => this._service.GetFilmsAsync();
+    public Task<List<Film>> GetFilms() => _filmService.GetFilmsAsync();
 
-    [HttpPost]
-    public List<Film> GenerateChampionship([FromBody] List<Film> films)
-    {
-      return this._service.HandleFilms(films);
-    }
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FilmService } from 'src/app/services/film.service';
 import { Subscription } from 'rxjs';
 import { Film } from 'src/app/models/film';
+import { Router } from '@angular/router';
+import { ChampionshipService } from 'src/app/services/championship.service';
 
 @Component({
   selector: 'home',
@@ -25,7 +27,8 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private filmService: FilmService) { }
+  constructor(private filmService: FilmService,
+    private championshipService: ChampionshipService, private router: Router) { }
 
   ngOnInit(): void {
     this.columns = (window.innerWidth <= this.breakpoint) ?
@@ -58,8 +61,8 @@ export class HomeComponent implements OnInit {
   }
 
   generateChampionship = (): void => {
-    this.filmService.generateChampionship(this.selectedFilms).subscribe(response => {
-      console.log(response);
+    this.championshipService.generateChampionship(this.selectedFilms).subscribe(response => {
+      this.router.navigate(['/podium', { "id": response.id }]);
     });
   }
 
