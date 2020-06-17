@@ -32,13 +32,16 @@ namespace championship_films_api
           options.AddPolicy(name: AllowUI,
                             builder =>
                             {
-                              builder.WithOrigins("http://localhost:4200");
+                              builder
+                              .WithOrigins(Configuration["UIOrigin"])
+                              .WithHeaders("accept", "accept-language", "content-type")
+                              .AllowAnyMethod();
                             });
         });
       services.AddControllers();
       services.AddHttpClient("copafilmes", c =>
       {
-        c.BaseAddress = new Uri("http://copafilmes.azurewebsites.net/");
+        c.BaseAddress = new Uri(Configuration["CopaFilmesUri"]);
       });
       services.AddSingleton<IFilmService, FilmService>();
     }

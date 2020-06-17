@@ -58,7 +58,9 @@ export class HomeComponent implements OnInit {
   }
 
   generateChampionship = (): void => {
-    this.filmService.generateChampionship(this.selectedFilms);
+    this.filmService.generateChampionship(this.selectedFilms).subscribe(response => {
+      console.log(response);
+    });
   }
 
   private selectFilm = (film: Film): void => {
